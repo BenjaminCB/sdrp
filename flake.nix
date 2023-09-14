@@ -11,7 +11,16 @@
             let
                 pkgs = nixpkgs.legacyPackages.${system};
                 python-pkgs = pkgs: with pkgs; [
-                    pygrametl
+                    (pkgs.buildPythonPackage rec {
+                        pname = "pygrametl";
+                        version = "2.8";
+                        src = pkgs.fetchPypi {
+                            inherit pname version;
+                            sha256 = "sha256-DphXiXQYefok7J93nnMI6cv/bb2QvVHhCDQIC7FlDSg=";
+                        };
+                        doCheck = false;
+                        propagatedBuildInputs = [];
+                    })
                     psycopg2
                 ];
             in {
