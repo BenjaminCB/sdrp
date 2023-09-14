@@ -11,7 +11,7 @@
             let
                 pkgs = nixpkgs.legacyPackages.${system};
                 python-pkgs = pkgs: with pkgs; [
-                    pygramctl
+                    pygrametl
                     psycopg2
                 ];
             in {
