@@ -31,7 +31,6 @@
                     nativeBuildInputs = [
                         (pkgs.python3.withPackages python-pkgs)
                         pkgs.python311Packages.python-lsp-server
-                        pkgs.postgresql
                     ];
 
                     shellHook = ''
