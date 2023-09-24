@@ -1,0 +1,34 @@
+sources: {
+  m: member.csv
+  c: category.csv
+  pc: product_categories.csv
+  p: product.csv
+  r: room.csv
+  s: sale.csv
+}
+
+extract_time: extract hour, day, month, year\n and calculate weekday\n from standard date string.
+
+clean_name: some product names contain html tags
+
+extract_type: find product category\n and calculate a category type for that category.
+
+targets: {
+  m: member
+  p: product
+  r: room
+  t: timetamp
+  s: sales
+}
+
+sources.s -> extract_time -> targets.t
+sources.s -> targets.s
+
+sources.c -> extract_type
+sources.pc -> extract_type
+sources.p -> clean_name -> extract_type
+extract_type -> targets.p
+
+sources.m -> targets.m
+
+sources.r -> targets.r
